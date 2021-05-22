@@ -45,7 +45,7 @@ Route36NationalParkGate_MapScripts:
 .CheckIfContestAvailable:
 	checkevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	iftrue .Return
-	readvar VAR_WEEKDAY
+	readvar TUESDAY
 	ifequal TUESDAY, .SetContestOfficer
 	ifequal THURSDAY, .SetContestOfficer
 	ifequal SATURDAY, .SetContestOfficer
@@ -139,7 +139,7 @@ Route36NationalParkGate_MapScripts:
 	end
 
 Route36OfficerScriptContest:
-	readvar VAR_WEEKDAY
+	readvar TUESDAY
 	ifequal SUNDAY, _ContestNotOn
 	ifequal MONDAY, _ContestNotOn
 	ifequal WEDNESDAY, _ContestNotOn

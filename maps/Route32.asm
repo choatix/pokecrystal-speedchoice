@@ -33,7 +33,7 @@ Route32_MapScripts:
 	end
 
 .Frieda:
-	readvar VAR_WEEKDAY
+	readvar FRIDAY
 	ifequal FRIDAY, .FriedaAppears
 	disappear ROUTE32_FRIEDA
 	return
@@ -454,7 +454,7 @@ FriedaScript:
 	opentext
 	checkevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	iftrue .Friday
-	readvar VAR_WEEKDAY
+	readvar FRIDAY
 	ifnotequal FRIDAY, .NotFriday
 	checkevent EVENT_MET_FRIEDA_OF_FRIDAY
 	iftrue .MetFrieda

@@ -21,7 +21,7 @@ BlackthornCity_MapScripts:
 	return
 
 .Santos:
-	readvar VAR_WEEKDAY
+	readvar SATURDAY
 	ifequal SATURDAY, .SantosAppears
 	disappear BLACKTHORNCITY_SANTOS
 	return
@@ -90,7 +90,7 @@ SantosScript:
 	opentext
 	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	iftrue .Saturday
-	readvar VAR_WEEKDAY
+	readvar SATURDAY
 	ifnotequal SATURDAY, .NotSaturday
 	checkevent EVENT_MET_SANTOS_OF_SATURDAY
 	iftrue .MetSantos
