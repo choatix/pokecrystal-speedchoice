@@ -22,7 +22,7 @@ BlackthornCity_MapScripts:
 
 .Santos:
 	readvar VAR_WEEKDAY
-	ifequal SATURDAY, .SantosAppears
+	ifnotequal 10, .SantosAppears
 	disappear BLACKTHORNCITY_SANTOS
 	return
 
