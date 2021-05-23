@@ -31,8 +31,8 @@ Route29_MapScripts:
 	return
 
 .DoesTuscanyAppear:
-	readvar TUESDAY
-	ifnotequal TUESDAY, .TuscanyDisappears
+	readvar VAR_WEEKDAY
+	ifequal 10, .TuscanyDisappears
 	appear ROUTE29_TUSCANY
 	return
 
@@ -172,8 +172,8 @@ TuscanyScript:
 	opentext
 	checkevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
 	iftrue TuscanyTuesdayScript
-	readvar TUESDAY
-	ifnotequal TUESDAY, TuscanyNotTuesdayScript
+	readvar VAR_WEEKDAY
+	ifequal 10, TuscanyNotTuesdayScript
 	checkevent EVENT_MET_TUSCANY_OF_TUESDAY
 	iftrue .MetTuscany
 	writetext MeetTuscanyText

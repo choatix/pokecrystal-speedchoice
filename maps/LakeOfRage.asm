@@ -32,8 +32,8 @@ LakeOfRage_MapScripts:
 	return
 
 .Wesley:
-	readvar WEDNESDAY
-	ifequal WEDNESDAY, .WesleyAppears
+	readvar VAR_WEEKDAY
+	ifnotequal 10, .WesleyAppears
 	disappear LAKEOFRAGE_WESLEY
 	return
 
@@ -276,8 +276,8 @@ WesleyScript:
 	opentext
 	checkevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	iftrue WesleyWednesdayScript
-	readvar WEDNESDAY
-	ifnotequal WEDNESDAY, WesleyNotWednesdayScript
+	readvar VAR_WEEKDAY
+	ifequal 10, WesleyNotWednesdayScript
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley
 	writetext MeetWesleyText
