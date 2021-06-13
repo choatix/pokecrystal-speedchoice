@@ -25,10 +25,10 @@ MountMoonSquare_MapScripts:
 ClefairyDance:
 	checkflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
 	iftrue .NoDancing
-	readvar MONDAY
-	ifnotequal MONDAY, .NoDancing
-	checktime NITE
-	iffalse .NoDancing
+	readvar VAR_WEEKDAY
+	ifequal 10, .NoDancing
+	checkflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
+	iftrue .NoDancing
 	appear MOUNTMOONSQUARE_FAIRY1
 	appear MOUNTMOONSQUARE_FAIRY2
 	applymovement PLAYER, PlayerWalksUpToDancingClefairies
