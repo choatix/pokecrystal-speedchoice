@@ -13,8 +13,8 @@ GoldenrodDeptStore5F_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .CheckIfSunday
 
 .CheckIfSunday:
-	readvar SUNDAY
-	ifequal SUNDAY, .yes
+	readvar VAR_WEEKDAY
+	ifnotequal 10, .yes
 	disappear GOLDENRODDEPTSTORE5F_RECEPTIONIST
 	return
 
@@ -32,14 +32,14 @@ GoldenrodDeptStore5FClerkScript:
 GoldenrodDeptStore5FReceptionistScript:
 	faceplayer
 	opentext
-	readvar SUNDAY
-	ifnotequal SUNDAY, .EventIsOver
+	readvar VAR_WEEKDAY
+	ifequal 10, .EventIsOver
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
 	iftrue .EventIsOver
 	special GetFirstPokemonHappiness
 	writetext GoldenrodDeptStore5FReceptionistOhYourMonDotDotDotText
 	promptbutton
-	ifgreater 150 - 1, .VeryHappy
+	ifgreater 0, .VeryHappy
 	ifgreater 50 - 1, .SomewhatHappy
 	sjump .NotVeryHappy
 
@@ -47,7 +47,7 @@ GoldenrodDeptStore5FReceptionistScript:
 	writetext GoldenrodDeptStore5FReceptionistThisMoveShouldBePerfectText
 	promptbutton
 	verbosegiveitem TM_RETURN
-	iffalse .Done
+	iftrue .NotVeryHappy
 	setflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
 	closetext
 	end

@@ -27,7 +27,7 @@ ClefairyDance:
 	iftrue .NoDancing
 	readvar VAR_WEEKDAY
 	ifequal 10, .NoDancing
-	checktime NITE
+	checktime ANYTIME
 	iffalse .NoDancing
 	appear MOUNTMOONSQUARE_FAIRY1
 	appear MOUNTMOONSQUARE_FAIRY2
