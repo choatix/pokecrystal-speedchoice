@@ -13,7 +13,7 @@ CeladonMansionRoofHousePharmacistScript:
 	iftrue .GotCurse
 	writetext CeladonMansionRoofHousePharmacistIntroText
 	promptbutton
-	checktime NITE
+	checktime ANYTIME
 	iftrue .Night
 	writetext CeladonMansionRoofHousePharmacistNotNightText
 	waitbutton

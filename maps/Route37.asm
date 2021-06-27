@@ -15,7 +15,7 @@ Route37_MapScripts:
 
 .Sunny:
 	readvar VAR_WEEKDAY
-	ifequal SUNDAY, .SunnyAppears
+	ifnotequal 10, .SunnyAppears
 	disappear ROUTE37_SUNNY
 	return
 
@@ -62,7 +62,7 @@ SunnyScript:
 	checkevent EVENT_GOT_MAGNET_FROM_SUNNY
 	iftrue SunnySundayScript
 	readvar VAR_WEEKDAY
-	ifnotequal SUNDAY, SunnyNotSundayScript
+	ifequal 10, SunnyNotSundayScript
 	checkevent EVENT_MET_SUNNY_OF_SUNDAY
 	iftrue .MetSunny
 	writetext MeetSunnyText

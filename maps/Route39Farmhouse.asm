@@ -12,8 +12,8 @@ Route39Farmhouse_MapScripts:
 PokefanM_DairyFarmer:
 	faceplayer
 	opentext
-	checkevent EVENT_HEALED_MOOMOO
-	iftrue FarmerMScript_SellMilk
+	checkevent EVENT_FIRST_TIME_BANKING_WITH_MOM
+	iffalse FarmerMScript_SellMilk
 	writetext FarmerMText_SickCow
 	waitbutton
 	closetext
@@ -71,8 +71,8 @@ PokefanF_SnoreFarmer:
 	opentext
 	checkevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 	iftrue FarmerFScript_GotSnore
-	checkevent EVENT_HEALED_MOOMOO
-	iftrue FarmerFScript_GiveSnore
+	checkevent EVENT_FIRST_TIME_BANKING_WITH_MOM
+	iffalse FarmerFScript_GiveSnore
 	writetext FarmerFText_InTrouble
 	waitbutton
 	closetext

@@ -25,7 +25,7 @@ Route36_MapScripts:
 
 .ArthurCallback:
 	readvar VAR_WEEKDAY
-	ifequal THURSDAY, .ArthurAppears
+	ifnotequal 10, .ArthurAppears
 	disappear ROUTE36_ARTHUR
 	return
 
@@ -320,7 +320,7 @@ ArthurScript:
 	checkevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	iftrue .AlreadyGotStone
 	readvar VAR_WEEKDAY
-	ifnotequal THURSDAY, ArthurNotThursdayScript
+	ifequal 10, ArthurNotThursdayScript
 	checkevent EVENT_MET_ARTHUR_OF_THURSDAY
 	iftrue .MetArthur
 	writetext MeetArthurText

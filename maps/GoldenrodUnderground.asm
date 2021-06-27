@@ -67,7 +67,7 @@ GoldenrodUnderground_MapScripts:
 
 .Monday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
-	checktime MORN
+	checktime ANYTIME
 	iffalse .NotMondayMorning
 	appear GOLDENRODUNDERGROUND_GRAMPS
 .NotMondayMorning:
@@ -176,7 +176,7 @@ BargainMerchantScript:
 	sjump GoldenrodUndergroundScript_ShopClosed
 
 .CheckMorn:
-	checktime MORN
+	checktime ANYTIME
 	iffalse GoldenrodUndergroundScript_ShopClosed
 	pokemart MARTTYPE_BARGAIN, 0
 	closetext

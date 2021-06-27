@@ -33,7 +33,7 @@ LakeOfRage_MapScripts:
 
 .Wesley:
 	readvar VAR_WEEKDAY
-	ifequal WEDNESDAY, .WesleyAppears
+	ifnotequal 10, .WesleyAppears
 	disappear LAKEOFRAGE_WESLEY
 	return
 
@@ -277,7 +277,7 @@ WesleyScript:
 	checkevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	iftrue WesleyWednesdayScript
 	readvar VAR_WEEKDAY
-	ifnotequal WEDNESDAY, WesleyNotWednesdayScript
+	ifequal 10, WesleyNotWednesdayScript
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley
 	writetext MeetWesleyText
@@ -624,7 +624,7 @@ LakeOfRage_MapEvents:
 	bg_event 21, 27, BGEVENT_READ, LakeOfRageSign
 	bg_event 25, 31, BGEVENT_READ, MagikarpHouseSignScript
 	bg_event 11, 28, BGEVENT_ITEM, LakeOfRageHiddenFullRestore
-	bg_event  4,  4, BGEVENT_ITEM, LakeOfRageHiddenRareCandy
+	bg_event  4,  5, BGEVENT_ITEM, LakeOfRageHiddenRareCandy
 	bg_event 35,  5, BGEVENT_ITEM, LakeOfRageHiddenMaxPotion
 
 	db 12 ; object events

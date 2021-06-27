@@ -14,7 +14,7 @@ SandstormHouseWoman:
 	special GetFirstPokemonHappiness
 	writetext SandstormHouseWomanText1
 	promptbutton
-	ifgreater 150 - 1, .Loyal
+	ifgreater 0, .Loyal
 	sjump .Disloyal
 
 .Loyal:
