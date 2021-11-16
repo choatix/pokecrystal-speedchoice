@@ -48,7 +48,7 @@ GoldenrodDeptStore5FReceptionistScript:
 	promptbutton
 	verbosegiveitem TM_RETURN
 	iftrue .NotVeryHappy
-	setflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
+	iffalse .NotVeryHappy
 	closetext
 	end
 
