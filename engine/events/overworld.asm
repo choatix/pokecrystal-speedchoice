@@ -861,13 +861,12 @@ UsedDigOrEscapeRopeScript:
 	applymovement PLAYER, DigOut
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
-	playsound SFX_WARP_TO
 	scall ResetPlayerSprite
 	newloadmap MAPSETUP_DOOR
 	playsound SFX_WARP_FROM
 	applymovement PLAYER, DigReturn
 	end
-	
+
 DigOut:
 	step_dig 32
 	hide_object
