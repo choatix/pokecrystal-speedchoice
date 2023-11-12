@@ -348,6 +348,23 @@ ChooseWildEncounter:
 	ret
 
 .loadwildmon
+	sboptioncheck RANDOM_WILDS
+	jp z, .proceed_loadwildmon
+		
+.randomwild
+	call Random			; a has a random number 0-255
+	
+	; check for invalid species IDs (0 and 252-255 are invalid)
+	cp 0					; compare to 0 (invalid ID)
+	jp z, .randomwild		; if invalid, try again
+	cp 252					; c flag will be set if a < 252 (valid number since we already tested for 0)
+	jp nc, .randomwild		; if invalid, try again
+	
+.valid_id:
+	; a should now have a pseudo-random value 1-251 for selecting a species for the wild.
+	ld b, a	
+	
+.proceed_loadwildmon	
 	ld a, b
 	ld [wTempWildMonSpecies], a
 

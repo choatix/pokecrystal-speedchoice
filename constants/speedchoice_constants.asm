@@ -163,6 +163,7 @@ EXP_SPLITTING_GEN8    EQU %10
 	sboption REMOVE_ANIMATIONS ; 4
 	sboption BIKE_INDOORS ;5
 	sboption FAST_REPEL ; 6
+	sboption RANDOM_WILDS ; 7
 
 NUM_PERMAOPTIONS_BYTES EQU optionbyte
 

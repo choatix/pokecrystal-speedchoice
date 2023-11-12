@@ -389,64 +389,26 @@ EvolveAfterBattle_MasterLoop:
 
 	push hl
 
-	; generates pseudo-random evolution
+	; generates pseudo-random (deterministic) evolution
 	push de
-
-	ld a, [wTempMonLevel]	; current level
-	swap a					; swap bits
 	
-	ld d, a					; save current value
-	ld a, [wTempMonSpecies]	; current species ID
-	add d					; add saved value
-	swap a					; swap bits
+.randomevo:
+	call Random				; a has a random number 0-255
 	
-	ld d, a					; save current value
-	ld a, [wPlayerID]		; Trainer ID high byte
-	add d					; add saved value
-	swap a					; swap bits
-	
-	ld d, a					; save current value
-	ld a, [wPlayerID + 1]	; Trainer ID low byte
-	add d					; add saved value
-	swap a					; swap bits
-	
-	ld d, a					; save current value
-	ld a, [wTempMonDVs]		; ATK/DEF DVs
-	add d					; add saved value
-	swap a					; swap bits
-	
-	ld d, a					; save current value
-	ld a, [wTempMonDVs + 1]	; SPD/SPC DVs
-	add d					; add saved value
-	swap a					; swap bits
-	
+	; check if the pokemon changed
 	ld d, a					; save current value
 	ld a, [wTempMonSpecies]	; current species ID
 	cp d					; compare new species with old species
-	jr nz, .not_same		; if species changed, jump to .not_same
+	jr z, .randomevo		; if species didn't change, try again
 	
 	ld a, d					; restore generated species ID
-	swap a					; if species didn't change, swap bits
-	ld d, a					; save current value
-	
-.not_same
-	ld a, d					; restore generated species ID
-	; check for invalid new species IDs (0 and 252-255 are invalid)
-	; subtract 1 first, so 251-255 are invalid (fixing if necessary), then add 1 at the end
-	sub 1
-	ld d, a					; save current value
-	cp 252					; c flag will be set if a < 252 (valid number)
-	jp c, .valid_id
-	
-	ld a, d
-	add 6					; fixes 251-255 so they wrap around to 1-5 (includes previous offset)
-	jp .done_fixing_id
-	
+	; check for invalid species IDs (0 and 252-255 are invalid)
+	cp 0					; compare to 0 (invalid ID)
+	jp z, .randomevo		; if invalid, try again
+	cp 252					; c flag will be set if a < 252 (valid number since we already tested for 0)
+	jp nc, .randomevo		; if invalid, try again
+		
 .valid_id:
-	ld a, d
-	add 1					; undo previous offset
-
-.done_fixing_id:
 	; a should now have a pseudo-random value 1-251 for selecting a new species for the evo.
 	
 	ld [wBuffer8], a	; saves new species to wram
