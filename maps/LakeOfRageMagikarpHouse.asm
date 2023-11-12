@@ -79,6 +79,8 @@ MagikarpLengthRaterScript:
 	end
 
 .TooShort:
+	checkitemrando
+	iftrue .GetReward
 	writetext MagikarpLengthRaterText_TooShort
 	waitbutton
 	closetext
@@ -91,6 +93,8 @@ MagikarpLengthRaterScript:
 	end
 
 .Refused:
+	checkitemrando
+	iftrue .GetReward
 	writetext MagikarpLengthRaterText_Refused
 	waitbutton
 	closetext

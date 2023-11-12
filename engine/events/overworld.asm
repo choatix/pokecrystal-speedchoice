@@ -600,6 +600,11 @@ FlyFunction:
 	ret
 
 .DoFly:
+	;ld b, 0
+	;sboptioncheck BIKE_INDOORS
+	;jr nz, .Skip
+	;ld b, 1
+	;.Skip
 	ld hl, .FlyScript
 	call QueueScript
 	ld a, $81
@@ -618,7 +623,7 @@ FlyFunction:
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
 	callasm SkipUpdateMapSprites
-	loadvar VAR_MOVEMENT, PLAYER_NORMAL
+	scall ResetPlayerSprite
 	newloadmap MAPSETUP_FLY
 	callasm FlyToAnim
 	special WaitSFX
@@ -777,6 +782,10 @@ EscapeRopeOrDig:
 	jr z, .incave
 	cp DUNGEON
 	jr z, .incave
+	cp TALL_INDOOR
+	jr z, .incave
+	cp GYM
+	jr z, .incave
 .fail
 	ld a, $2
 	ret
@@ -844,6 +853,7 @@ UsedDigScript:
 	special UpdateTimePals
 	writetext UseDigText
 
+
 UsedDigOrEscapeRopeScript:
 	waitbutton
 	closetext
@@ -851,7 +861,8 @@ UsedDigOrEscapeRopeScript:
 	applymovement PLAYER, DigOut
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
-	loadvar VAR_MOVEMENT, PLAYER_NORMAL
+	playsound SFX_WARP_TO
+	scall ResetPlayerSprite
 	newloadmap MAPSETUP_DOOR
 	playsound SFX_WARP_FROM
 	applymovement PLAYER, DigReturn
@@ -944,7 +955,7 @@ TeleportFunction:
 	applymovement PLAYER, .TeleportFrom
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
-	loadvar VAR_MOVEMENT, PLAYER_NORMAL
+	scall ResetPlayerSprite
 	newloadmap MAPSETUP_TELEPORT
 	playsound SFX_WARP_FROM
 	applymovement PLAYER, .TeleportTo
@@ -1620,6 +1631,14 @@ UnusedNothingHereText: ; unused
 	text_far _UnusedNothingHereText
 	text_end
 
+ResetPlayerSprite:
+	;ld a, b
+	;cp b
+	;jr nz, .DoNothing
+	;loadvar VAR_MOVEMENT, PLAYER_NORMAL
+;.DoNothing
+	end
+
 BikeFunction:
 	call .TryBike
 	and $7f
@@ -1687,6 +1706,7 @@ BikeFunction:
 	ld h, d
 	ld l, e
 	ret
+
 
 .CheckEnvironment:
 	sboptioncheck BIKE_INDOORS

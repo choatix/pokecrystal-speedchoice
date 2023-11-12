@@ -400,6 +400,8 @@ BugContestResults_FirstPlace:
 	checkevent EVENT_BGC_FIRST
 	iftrue BugContestResults_ReturnAfterWinnersPrize
 	setevent EVENT_BGC_FIRST
+	ld b, 1
+	getnum STRING_BUFFER_3
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	getitemname STRING_BUFFER_4, SUN_STONE
 	farwritetext ContestResults_PlayerWonAPrizeText
@@ -412,6 +414,8 @@ BugContestResults_SecondPlace:
 	checkevent EVENT_BGC_SECOND
 	iftrue BugContestResults_ReturnAfterWinnersPrize
 	setevent EVENT_BGC_SECOND
+	ld b, 2
+	getnum STRING_BUFFER_3
 	getitemname STRING_BUFFER_4, EVERSTONE
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
@@ -423,6 +427,8 @@ BugContestResults_ThirdPlace:
 	checkevent EVENT_BGC_THIRD
 	iftrue BugContestResults_ReturnAfterWinnersPrize
 	setevent EVENT_BGC_THIRD
+	ld b, 3
+	getnum STRING_BUFFER_3
 	getitemname STRING_BUFFER_4, GOLD_BERRY
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton

@@ -81,7 +81,7 @@ CeruleanGymMistyScript:
 	iffalse .EndMisty
 	setevent EVENT_GOT_CASCADE_BADGE
 .EndMisty
-	writetext ReceivedCascadeBadgeText
+	;writetext ReceivedCascadeBadgeText
 	closetext
 	end
 .GotCascadeBadge:

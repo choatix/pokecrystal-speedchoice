@@ -12,7 +12,12 @@ OlivinePort_MapScripts:
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .LeaveFastShip ; SCENE_OLIVINEPORT_LEAVE_SHIP
 
-	db 0 ; callbacks
+        db 1 ; callbacks
+        callback MAPCALLBACK_NEWMAP, .FlyPoint
+
+.FlyPoint:
+        setflag ENGINE_FLYPOINT_OLIVINE
+        return
 
 .DummyScene0:
 	end

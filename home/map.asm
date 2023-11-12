@@ -365,6 +365,10 @@ CheckIndoorMap::
 	ret z
 	cp DUNGEON
 	ret z
+	cp GYM
+	ret z
+	cp TALL_INDOOR
+	ret z
 	cp GATE
 	ret
 
@@ -374,7 +378,7 @@ UnreferencedCheckEnvironment::
 	ret z
 	cp GATE
 	ret z
-	cp ENVIRONMENT_5
+	;cp ENVIRONMENT_5
 	ret
 
 LoadMapAttributes::

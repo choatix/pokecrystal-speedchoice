@@ -21,9 +21,10 @@ MAP_NONE   EQU 0
 	const ROUTE
 	const INDOOR
 	const CAVE
-	const ENVIRONMENT_5
+	const GYM
 	const GATE
 	const DUNGEON
+	const TALL_INDOOR
 
 ; map palettes (wEnvironment)
 	const_def

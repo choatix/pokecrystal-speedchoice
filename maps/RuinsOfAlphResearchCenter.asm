@@ -92,7 +92,7 @@ RuinsOfAlphResearchCenterScientist1Script:
 	opentext
 	readvar VAR_UNOWNCOUNT
 	ifequal NUM_UNOWN, .GotAllUnown
-	checkflag ENGINE_UNOWN_DEX
+	checkflag EVENT_GOT_UNOWN_DEX
 	iftrue .GotUnownDex
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue .UnownAppeared

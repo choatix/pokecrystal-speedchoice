@@ -5,9 +5,11 @@ EnvironmentColorsPointers:
 	dw .OutdoorColors ; ROUTE
 	dw .IndoorColors  ; INDOOR
 	dw .DungeonColors ; CAVE
-	dw .Env5Colors    ; ENVIRONMENT_5
+	dw .IndoorColors  ; GYM
 	dw .IndoorColors  ; GATE
 	dw .DungeonColors ; DUNGEON
+	dw .IndoorColors ;  TALL_INDOOR
+;	dw .IndoorColors ;  GYM
 
 ; Valid indices: $00 - $29 (see gfx/tilesets/bg_tiles.pal)
 .OutdoorColors:

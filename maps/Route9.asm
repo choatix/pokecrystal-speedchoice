@@ -9,7 +9,7 @@
 Route9_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+        db 0 ; callbacks
 
 TrainerCamperDean:
 	trainer CAMPER, DEAN, EVENT_BEAT_CAMPER_DEAN, CamperDeanSeenText, CamperDeanBeatenText, 0, .Script
