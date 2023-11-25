@@ -101,7 +101,7 @@ CheckMonChecks:
 	checkevent EVENT_ELM_HANDLER
 	iftrue ElmCheckEverstone2
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue ElmCheckEverstone2
+	iffalse ElmCheckEverstone2
 ;	scall DebugText
 	closetext
 	clearevent EVENT_ELM_HANDLER
