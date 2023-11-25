@@ -131,7 +131,9 @@ def main():
 
     setconfig('Type', 'Crystal')
     setconfig('ExtraTableFile', 'gsc_english')
-
+    set_symbol('WildProbabilities','GrassMonProbTable')
+    set_symbol('BetterWildProbabilities', 'BetterGrassMonProbTable')
+    set_symbol('WaterProbabilities', 'WaterMonProbTable')
     set_symbol('PokemonNamesOffset', 'PokemonNames')
     setconfig('PokemonNamesLength', '10')
     set_symbol('PokemonStatsOffset', 'BaseData')

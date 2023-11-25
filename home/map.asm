@@ -365,9 +365,7 @@ CheckIndoorMap::
 	ret z
 	cp DUNGEON
 	ret z
-	cp GYM
-	ret z
-	cp TALL_INDOOR
+	cp GYM_OR_TALL
 	ret z
 	cp GATE
 	ret

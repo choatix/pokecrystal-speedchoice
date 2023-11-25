@@ -2,6 +2,7 @@
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST1
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST2
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST3
+	const RUINSOFALPHRESEARCHCENTER_SCIENTIST4
 
 RuinsOfAlphResearchCenter_MapScripts:
 	db 2 ; scene scripts
@@ -10,6 +11,7 @@ RuinsOfAlphResearchCenter_MapScripts:
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .ScientistCallback
+	;callback MAPCALLBACK_OBJECTS, .ShowScientist4
 
 .DummyScene0:
 	end
@@ -21,11 +23,23 @@ RuinsOfAlphResearchCenter_MapScripts:
 .ScientistCallback:
 	checkscene
 	ifequal SCENE_RUINSOFALPHRESEARCHCENTER_GET_UNOWN_DEX, .ShowScientist
+	sjump .ShowScientist4
 	return
 
 .ShowScientist:
 	moveobject RUINSOFALPHRESEARCHCENTER_SCIENTIST3, 3, 7
 	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST3
+	return
+
+.ShowScientist4:
+	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
+	iffalse .No
+	checkitemrando
+	iffalse .No
+	;appear RUINSOFALPHRESEARCHCENTER_SCIENTIST4
+	return
+.No
+	disappear RUINSOFALPHRESEARCHCENTER_SCIENTIST4
 	return
 
 .GetUnownDexScript:
@@ -87,6 +101,26 @@ RuinsOfAlphResearchCenterScientist3Script:
 	closetext
 	end
 
+SeeUnown:
+	refreshscreen
+	pokepic UNOWN
+	setval UNOWN
+	special UnusedSetSeenMon
+	cry UNOWN
+	waitbutton
+	closepokepic
+	closetext
+	setevent EVENT_GOT_UNOWN_INFO
+	end
+
+
+RuinsOfAlphResearchCenterScientist4Script:
+	faceplayer
+	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
+	iftrue SeeUnown
+	waitbutton
+	end
+
 RuinsOfAlphResearchCenterScientist1Script:
 	faceplayer
 	opentext
@@ -104,21 +138,11 @@ RuinsOfAlphResearchCenterScientist1Script:
 .UnownAppeared:
 	writetext RuinsOfAlphResearchCenterScientist1Text_UnownAppeared
 	checkitemrando
-	iftrue .SeeUnown
+	iftrue SeeUnown
 	waitbutton
 	closetext
 	end
 
-.SeeUnown:
-	refreshscreen
-	pokepic UNOWN
-	setval UNOWN
-	special UnusedSetSeenMon
-	cry UNOWN
-	waitbutton
-	closepokepic
-	closetext
-	end
 
 .GotUnownDex:
 	writetext RuinsOfAlphResearchCenterScientist1Text_GotUnownDex
@@ -432,7 +456,8 @@ RuinsOfAlphResearchCenter_MapEvents:
 	bg_event  3,  4, BGEVENT_READ, RuinsOfAlphResearchCenterComputer
 	bg_event  7,  1, BGEVENT_READ, RuinsOfAlphResearchCenterPrinter
 
-	db 3 ; object events
+	db 4 ; object events
 	object_event  4,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphResearchCenterScientist1Script, -1
 	object_event  5,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphResearchCenterScientist2Script, -1
 	object_event  2,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphResearchCenterScientist3Script, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
+	object_event  3,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphResearchCenterScientist4Script, EVENT_GOT_UNOWN_INFO

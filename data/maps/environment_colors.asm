@@ -8,8 +8,7 @@ EnvironmentColorsPointers:
 	dw .IndoorColors  ; GYM
 	dw .IndoorColors  ; GATE
 	dw .DungeonColors ; DUNGEON
-	dw .IndoorColors ;  TALL_INDOOR
-;	dw .IndoorColors ;  GYM
+	;dw .IndoorColors  ; TALL_INDOOR
 
 ; Valid indices: $00 - $29 (see gfx/tilesets/bg_tiles.pal)
 .OutdoorColors:

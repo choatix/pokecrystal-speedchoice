@@ -86,15 +86,33 @@ ElmsLab_MapScripts:
 	closetext
 	end
 
+;MyText:
+;	text "Hello"
+;	line "World"
+;	done
+
+;DebugText:
+;	writetext MyText
+;	waitbutton
+;	return
+
+
 CheckMonChecks:
+	checkevent EVENT_ELM_HANDLER
+	iftrue ElmCheckEverstone2
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iffalse ElmCheckEverstone2
+	iftrue ElmCheckEverstone2
+;	scall DebugText
 	closetext
+	clearevent EVENT_ELM_HANDLER
 	end
+
 
 ProfElmScript:
 	faceplayer
+	setevent EVENT_ELM_HANDLER
 	opentext
+;	scall DebugText
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue ElmCheckMasterBall
 	checkevent EVENT_ELM_HAS_SS_TICKET
@@ -349,6 +367,7 @@ ElmAfterTheftDoneScript:
 	end
 
 ElmAfterTheftScript:
+	clearevent EVENT_ELM_HANDLER
 	writetext ElmAfterTheftText1
 	checkitem MYSTERY_EGG
 	iffalse ElmAfterTheftDoneScript
@@ -434,6 +453,7 @@ ElmScript_NoRoomForEverstone:
 	end
 
 ElmGiveMasterBallScript:
+	clearevent EVENT_ELM_HANDLER
 	writetext ElmGiveMasterBallText1
 	promptbutton
 	verbosegiveitem MASTER_BALL
@@ -445,6 +465,7 @@ ElmGiveMasterBallScript:
 	sjump ElmCheckMysteryEgg
 
 ElmGiveTicketScript:
+	clearevent EVENT_ELM_HANDLER
 	writetext ElmGiveTicketText1
 	promptbutton
 	verbosegiveitem S_S_TICKET
