@@ -246,9 +246,9 @@ TinTower1FSage5Script:
 	iffalse .SkipRainbowWing
 	setevent EVENT_GOT_RAINBOW_WING
 .SkipRainbowWing
-	closetext
 	checkitem RAINBOW_WING
 	iffalse .GotRainbowWing
+	closetext
 	refreshscreen
 	earthquake 72
 	waitsfx

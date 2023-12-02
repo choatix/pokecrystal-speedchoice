@@ -11,7 +11,6 @@ RuinsOfAlphResearchCenter_MapScripts:
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .ScientistCallback
-	;callback MAPCALLBACK_OBJECTS, .ShowScientist4
 
 .DummyScene0:
 	end
@@ -29,6 +28,7 @@ RuinsOfAlphResearchCenter_MapScripts:
 .ShowScientist:
 	moveobject RUINSOFALPHRESEARCHCENTER_SCIENTIST3, 3, 7
 	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST3
+	sjump .ShowScientist4
 	return
 
 .ShowScientist4:
@@ -36,7 +36,7 @@ RuinsOfAlphResearchCenter_MapScripts:
 	iffalse .No
 	checkitemrando
 	iffalse .No
-	;appear RUINSOFALPHRESEARCHCENTER_SCIENTIST4
+	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST4
 	return
 .No
 	disappear RUINSOFALPHRESEARCHCENTER_SCIENTIST4
