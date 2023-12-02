@@ -396,12 +396,13 @@ BugContestResults_CleanUp:
 	special PlayMapMusic
 	end
 
+
+
 BugContestResults_FirstPlace:
 	checkevent EVENT_BGC_FIRST
 	iftrue BugContestResults_ReturnAfterWinnersPrize
 	setevent EVENT_BGC_FIRST
-	ld b, 1
-	getnum STRING_BUFFER_3
+	getstring STRING_BUFFER_3, .FirstPlace
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	getitemname STRING_BUFFER_4, SUN_STONE
 	farwritetext ContestResults_PlayerWonAPrizeText
@@ -410,12 +411,14 @@ BugContestResults_FirstPlace:
 	iffalse BugContestResults_NoRoomForSunStone
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
+.FirstPlace:
+	db "1@"
+
 BugContestResults_SecondPlace:
 	checkevent EVENT_BGC_SECOND
 	iftrue BugContestResults_ReturnAfterWinnersPrize
 	setevent EVENT_BGC_SECOND
-	ld b, 2
-	getnum STRING_BUFFER_3
+	getstring STRING_BUFFER_3, .SecondPlace
 	getitemname STRING_BUFFER_4, EVERSTONE
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
@@ -423,18 +426,23 @@ BugContestResults_SecondPlace:
 	iffalse BugContestResults_NoRoomForEverstone
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
+.SecondPlace:
+	db "2@"
+
 BugContestResults_ThirdPlace:
 	checkevent EVENT_BGC_THIRD
 	iftrue BugContestResults_ReturnAfterWinnersPrize
 	setevent EVENT_BGC_THIRD
-	ld b, 3
-	getnum STRING_BUFFER_3
+	getstring STRING_BUFFER_3, .ThirdPlace
 	getitemname STRING_BUFFER_4, GOLD_BERRY
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
 	verbosegiveitem GOLD_BERRY
 	iffalse BugContestResults_NoRoomForGoldBerry
 	sjump BugContestResults_ReturnAfterWinnersPrize
+
+.ThirdPlace:
+	db "3@"
 
 BugContestResults_NoRoomForSunStone:
 	farwritetext BugContestPrizeNoRoomText
